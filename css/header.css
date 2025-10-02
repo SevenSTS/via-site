@@ -1,0 +1,459 @@
+:root {
+  --main-color: #224e7f;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* Empêche tout débordement horizontal (utile pour le carrousel en 100vw) */
+html,
+body {
+  overflow-x: hidden;
+}
+
+/* =================== ANIM LOGO =================== */
+@keyframes logoChargement {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* =================== HEADER =================== */
+header {
+  background: #fff;
+}
+
+header .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+header .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: logoChargement 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+header img {
+  width: 50px;
+  height: auto;
+}
+
+header h1 {
+  color: var(--main-color);
+  font-size: 1.4rem;
+  line-height: 1.1;
+}
+
+/* ===== Menu + sous-menus ===== */
+nav .menu {
+  list-style: none;
+  display: flex;
+  gap: 28px;
+}
+
+nav .menu > li > a {
+  color: var(--main-color);
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+nav .menu > li > a:hover {
+  background-color: rgba(30, 58, 138, 0.08);
+}
+
+.has-submenu {
+  position: relative;
+}
+
+.submenu {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 8px);
+  min-width: 180px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  list-style: none;
+  padding: 8px;
+  display: none;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.submenu li a {
+  display: block;
+  padding: 8px 10px;
+  color: #1f2937;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.submenu li a:hover {
+  background: #f3f4f6;
+}
+
+.has-submenu:hover > .submenu {
+  display: block;
+}
+
+/* =================== CARROUSEL CSS-ONLY =================== */
+/* Full-bleed : prend toute la largeur viewport sans marges parasites */
+.carrousel {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  width: 100vw;
+  height: 400px;
+  overflow: hidden;
+}
+
+/* On travaille en unités vw pour garantir 3 visuels plein cadre */
+:root {
+  --slide-w: calc(100vw / 3);
+  --step: var(--slide-w);
+  --d: 16s;
+}
+
+.slider {
+  display: flex;
+  height: 100%;
+  animation: sliderX var(--d) linear infinite;
+}
+
+.photo {
+  flex: 0 0 var(--slide-w);
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
+}
+
+.photo1 {
+  background-image: url("/img/carroussel1.jpg");
+}
+
+.photo2 {
+  background-image: url("/img/carroussel2.jpg");
+}
+
+.photo3 {
+  background-image: url("/img/carroussel3.jpeg");
+}
+
+.photo4 {
+  background-image: url("/img/carroussel4.jpeg");
+}
+
+/* Défilement “par crans” avec zones de pause pour la lisibilité */
+@keyframes sliderX {
+  0% {
+    transform: translateX(0);
+  }
+  18% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(calc(-1 * var(--step)));
+  }
+  43% {
+    transform: translateX(calc(-1 * var(--step)));
+  }
+  50% {
+    transform: translateX(calc(-2 * var(--step)));
+  }
+  68% {
+    transform: translateX(calc(-2 * var(--step)));
+  }
+  75% {
+    transform: translateX(calc(-3 * var(--step)));
+  }
+  93% {
+    transform: translateX(calc(-3 * var(--step)));
+  }
+  100% {
+    transform: translateX(calc(-4 * var(--step)));
+  }
+}
+
+/* =================== SECTION TEXTE + VIDÉO =================== */
+.landing-page {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 24px;
+  display: flex;
+  gap: 40px;
+  align-items: stretch;
+}
+
+.landing-page .left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--main-color);
+}
+
+.landing-page h3 {
+  font-size: 30px;
+  margin-bottom: 16px;
+}
+
+.main-button {
+  align-self: flex-start;
+  text-decoration: none;
+  border: 1px solid var(--main-color);
+  background: var(--main-color);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  transition: transform 0.2s ease;
+}
+
+.main-button:hover {
+  background: #16385e;
+  transform: translateY(-2px);
+}
+
+.landing-page .right {
+  flex: 1;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.video-container iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* =================== PARTENAIRES (5 colonnes + n/b → couleur au hover) =================== */
+.partenaires {
+  background: #f9f9f9;
+  padding: 40px 0;
+  color: var(--main-color);
+}
+
+.partenaires .wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.partenaires h3 {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.partners-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+  align-items: center;
+}
+
+.partners-grid li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.partners-grid img {
+  max-width: 120px;
+  width: 100%;
+  height: auto;
+  filter: grayscale(100%);
+  opacity: 0.7;
+  transition: filter 0.25s ease;
+  transition: opacity 0.25s ease;
+  transition: transform 0.25s ease;
+}
+
+.partners-grid img:hover {
+  filter: none;
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+/* =================== BOUTON LANGUE =================== */
+.translate-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  background: var(--main-color);
+  color: #fff;
+  text-decoration: none;
+  font-size: 26px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  transition: background-color 0.3s ease;
+  transition: transform 0.25s ease;
+  z-index: 1000;
+}
+
+.translate-btn:hover {
+  background: #16385e;
+  transform: scale(1.08);
+}
+
+/* =================== FOOTER =================== */
+footer {
+  background: var(--main-color);
+  color: #fff;
+}
+
+footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.footer-brand {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "logo title" "logo tagline";
+  column-gap: 12px;
+  row-gap: 6px;
+}
+
+.footer-brand img {
+  grid-area: logo;
+  width: 56px;
+  height: auto;
+}
+
+.footer-brand h2 {
+  grid-area: title;
+  font-size: 1.25rem;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.footer-brand .tagline {
+  grid-area: tagline;
+  opacity: 0.9;
+  font-size: 0.95rem;
+}
+
+footer h3 {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+footer a {
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.95;
+  transition: opacity 0.2s ease;
+  transition: transform 0.2s ease;
+}
+
+footer a:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.footer-links ul,
+.footer-social ul {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-social ul li a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
+  padding: 12px 16px;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+/* =================== RESPONSIVE =================== */
+@media (max-width: 1100px) {
+  .partners-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  header .container {
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  nav .menu {
+    gap: 18px;
+  }
+
+  .landing-page {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .partners-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  footer .container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .partners-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  footer .container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .footer-bottom {
+    font-size: 0.9rem;
+  }
+}
