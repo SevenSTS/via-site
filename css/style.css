@@ -351,6 +351,7 @@ footer .container {
   grid-template-columns: 1.2fr 1fr 1fr 1fr;
   gap: 28px;
   align-items: start;
+  color: #fff;
 }
 
 .footer-brand {
@@ -361,12 +362,14 @@ footer .container {
     "logo tagline";
   column-gap: 12px;
   row-gap: 6px;
+  color: #fff;
 }
 
 .footer-brand img {
   grid-area: logo;
   width: 56px;
   height: auto;
+  color: #fff;
 }
 
 .footer-brand h2 {
@@ -374,6 +377,7 @@ footer .container {
   font-size: 1.25rem;
   line-height: 1.1;
   margin: 0;
+  color: #fff;
 }
 
 .footer-brand .tagline {
@@ -385,6 +389,7 @@ footer .container {
 footer h3 {
   font-size: 1rem;
   margin-bottom: 10px;
+  color: #fff;
 }
 
 footer a {
@@ -406,12 +411,14 @@ footer a:hover {
   gap: 8px;
   padding: 0;
   margin: 0;
+  color: #fff;
 }
 
 .footer-social ul li a {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  color: #fff;
 }
 
 .footer-bottom {
@@ -420,20 +427,26 @@ footer a:hover {
   padding: 12px 16px;
   font-size: 0.95rem;
   opacity: 0.9;
+  color: #fff;
 }
 
 /* =============== Page Formations ================ */
 .formations-banderole {
   background-color: var(--main-color);
   height: 100px;
-  color: white;
   display: flex;
   flex-direction: column;
   text-align: center;
   justify-content: center;
   gap: 10px;
 }
+.formations-landing-page {
+    color: var(--main-color);
+}
 
+.formations-banderole p {
+    color: white;
+}
 /* ======= Titre ======= */
 .formations-main h2 {
   text-align: center;
@@ -495,7 +508,6 @@ footer a:hover {
 
 .formations-columns .text span {
   display: inline-block;
-  color: #6b7280;                   /* gris lisible */
   font-weight: 600;
   margin-bottom: 6px;
 }
@@ -531,9 +543,114 @@ footer a:hover {
 
 
 
+/* ======= Section Débouchés ======= */
+.formations-avenir {
+  margin: 40px auto 0;
+  padding: 32px 24px;
+  background: #f9f9f9;
+  box-shadow: 0 8px 20px rgba(0,0,0,.04);
+  text-align: center; /* ➜ tout ce qui est inline-block au centre */
+}
 
+/* Titre */
+.formations-avenir h2 {
+  text-align: center;
+  font-size: clamp(26px, 3vw, 38px);
+  margin: 0 0 20px;
+}
 
+/* Liste en grille de tuiles */
+.formations-avenir ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto 28px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 colonnes desktop */
+  gap: 16px;
+  max-width: 1000px;
+}
 
+.formations-avenir li {
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: 12px;
+  padding: 14px 16px 14px 44px; /* place pour l’icône */
+  position: relative;
+  font-size: 16px;
+  line-height: 1.4;
+  box-shadow: 0 6px 14px rgba(0,0,0,.04);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.formations-avenir li::before {
+  content: "✓";
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  color: #fff;
+  background: var(--main-color, #1d4ed8);
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(29,78,216,.35);
+  font-size: 14px;
+}
+
+.formations-avenir li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0,0,0,.08);
+}
+
+/* Bouton d’inscription (CTA) */
+.formations-avenir .main-button {
+  display: inline-block;
+  margin: 4px auto 0;
+  text-decoration: none;
+  background: var(--main-color, #1d4ed8);
+  color: #fff;
+  border: 1px solid var(--main-color, #1d4ed8);
+  padding: 12px 28px;
+  border-radius: 999px;
+  font-weight: 600;
+  letter-spacing: .2px;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+  box-shadow: 0 8px 20px rgba(29,78,216,.25);
+}
+
+.formations-avenir .main-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(29,78,216,.35);
+}
+
+.formations-avenir .main-button:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 16px rgba(29,78,216,.25);
+}
+
+/* ======= Responsive ======= */
+@media (max-width: 992px) {
+  .formations-avenir ul {
+    grid-template-columns: repeat(2, 1fr); /* 2 colonnes tablette */
+  }
+}
+
+@media (max-width: 600px) {
+  .formations-avenir {
+    margin: 28px 14px 48px;
+    padding: 24px 16px;
+  }
+  .formations-avenir ul {
+    grid-template-columns: 1fr; /* 1 colonne mobile */
+    gap: 12px;
+  }
+  .formations-avenir li {
+    padding: 12px 14px 12px 42px;
+  }
+}
 
 
 
