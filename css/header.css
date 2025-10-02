@@ -1,7 +1,12 @@
+/* =================== VARIABLES =================== */
 :root {
   --main-color: #224e7f;
+  --slide-w: calc(100vw / 3);
+  --step: var(--slide-w);
+  --d: 16s;
 }
 
+/* =================== RESET / BASE =================== */
 * {
   margin: 0;
   padding: 0;
@@ -9,13 +14,12 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-/* Empêche tout débordement horizontal (utile pour le carrousel en 100vw) */
 html,
 body {
   overflow-x: hidden;
 }
 
-/* =================== ANIM LOGO =================== */
+/* =================== ANIMATIONS =================== */
 @keyframes logoChargement {
   from {
     transform: translateY(-50px);
@@ -27,9 +31,42 @@ body {
   }
 }
 
+@keyframes sliderX {
+  0% {
+    transform: translateX(0);
+  }
+  18% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(calc(-1 * var(--step)));
+  }
+  43% {
+    transform: translateX(calc(-1 * var(--step)));
+  }
+  50% {
+    transform: translateX(calc(-2 * var(--step)));
+  }
+  68% {
+    transform: translateX(calc(-2 * var(--step)));
+  }
+  75% {
+    transform: translateX(calc(-3 * var(--step)));
+  }
+  93% {
+    transform: translateX(calc(-3 * var(--step)));
+  }
+  100% {
+    transform: translateX(calc(-4 * var(--step)));
+  }
+}
+
 /* =================== HEADER =================== */
 header {
   background: #fff;
+  position: relative;
+  z-index: 20;
+  isolation: isolate;
 }
 
 header .container {
@@ -60,7 +97,7 @@ header h1 {
   line-height: 1.1;
 }
 
-/* ===== Menu + sous-menus ===== */
+/* =================== NAVIGATION + DROPDOWN =================== */
 nav .menu {
   list-style: none;
   display: flex;
@@ -93,8 +130,50 @@ nav .menu > li > a:hover {
   border-radius: 8px;
   list-style: none;
   padding: 8px;
-  display: none;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  opacity: 0;
+  transform: translateY(8px) scaleY(0.98);
+  transform-origin: top;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.22s cubic-bezier(0.2, 0.7, 0.2, 1);
+  z-index: 9999;
+}
+
+.has-submenu:hover > .submenu,
+.has-submenu:focus-within > .submenu {
+  opacity: 1;
+  transform: translateY(0) scaleY(1);
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.submenu li {
+  opacity: 0;
+  transform: translateY(4px);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.has-submenu:hover > .submenu li,
+.has-submenu:focus-within > .submenu li {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.submenu li:nth-child(1) {
+  transition-delay: 0s;
+}
+
+.submenu li:nth-child(2) {
+  transition-delay: 0.02s;
+}
+
+.submenu li:nth-child(3) {
+  transition-delay: 0.04s;
+}
+
+.submenu li:nth-child(4) {
+  transition-delay: 0.06s;
 }
 
 .submenu li a {
@@ -109,12 +188,7 @@ nav .menu > li > a:hover {
   background: #f3f4f6;
 }
 
-.has-submenu:hover > .submenu {
-  display: block;
-}
-
 /* =================== CARROUSEL CSS-ONLY =================== */
-/* Full-bleed : prend toute la largeur viewport sans marges parasites */
 .carrousel {
   position: relative;
   left: 50%;
@@ -124,13 +198,7 @@ nav .menu > li > a:hover {
   width: 100vw;
   height: 400px;
   overflow: hidden;
-}
-
-/* On travaille en unités vw pour garantir 3 visuels plein cadre */
-:root {
-  --slide-w: calc(100vw / 3);
-  --step: var(--slide-w);
-  --d: 16s;
+  z-index: 0;
 }
 
 .slider {
@@ -161,37 +229,6 @@ nav .menu > li > a:hover {
 
 .photo4 {
   background-image: url("/img/carroussel4.jpeg");
-}
-
-/* Défilement “par crans” avec zones de pause pour la lisibilité */
-@keyframes sliderX {
-  0% {
-    transform: translateX(0);
-  }
-  18% {
-    transform: translateX(0);
-  }
-  25% {
-    transform: translateX(calc(-1 * var(--step)));
-  }
-  43% {
-    transform: translateX(calc(-1 * var(--step)));
-  }
-  50% {
-    transform: translateX(calc(-2 * var(--step)));
-  }
-  68% {
-    transform: translateX(calc(-2 * var(--step)));
-  }
-  75% {
-    transform: translateX(calc(-3 * var(--step)));
-  }
-  93% {
-    transform: translateX(calc(-3 * var(--step)));
-  }
-  100% {
-    transform: translateX(calc(-4 * var(--step)));
-  }
 }
 
 /* =================== SECTION TEXTE + VIDÉO =================== */
@@ -225,8 +262,7 @@ nav .menu > li > a:hover {
   color: #fff;
   padding: 10px 20px;
   border-radius: 8px;
-  transition: background-color 0.3s ease;
-  transition: transform 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .main-button:hover {
@@ -252,7 +288,7 @@ nav .menu > li > a:hover {
   border: none;
 }
 
-/* =================== PARTENAIRES (5 colonnes + n/b → couleur au hover) =================== */
+/* =================== PARTENAIRES =================== */
 .partenaires {
   background: #f9f9f9;
   padding: 40px 0;
@@ -290,9 +326,7 @@ nav .menu > li > a:hover {
   height: auto;
   filter: grayscale(100%);
   opacity: 0.7;
-  transition: filter 0.25s ease;
-  transition: opacity 0.25s ease;
-  transition: transform 0.25s ease;
+  transition: filter 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
 }
 
 .partners-grid img:hover {
@@ -318,8 +352,7 @@ nav .menu > li > a:hover {
   justify-content: center;
   border-radius: 50%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
-  transition: background-color 0.3s ease;
-  transition: transform 0.25s ease;
+  transition: background-color 0.3s ease, transform 0.25s ease;
   z-index: 1000;
 }
 
@@ -380,8 +413,7 @@ footer a {
   color: #fff;
   text-decoration: none;
   opacity: 0.95;
-  transition: opacity 0.2s ease;
-  transition: transform 0.2s ease;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 footer a:hover {
@@ -424,20 +456,16 @@ footer a:hover {
     justify-content: space-between;
     gap: 16px;
   }
-
   nav .menu {
     gap: 18px;
   }
-
   .landing-page {
     flex-direction: column;
     gap: 24px;
   }
-
   .partners-grid {
     grid-template-columns: repeat(3, 1fr);
   }
-
   footer .container {
     grid-template-columns: 1fr 1fr;
   }
@@ -447,12 +475,10 @@ footer a:hover {
   .partners-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-
   footer .container {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-
   .footer-bottom {
     font-size: 0.9rem;
   }
