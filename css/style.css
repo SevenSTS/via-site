@@ -1198,3 +1198,77 @@ button {
         grid-column: span 2 !important;
     }
 }
+
+/* === Burger responsive (mobile) === */
+.nav-toggle{
+  position:absolute;
+  width:1px;height:1px;
+  opacity:0;pointer-events:none;
+}
+/* Bouton burger (caché en desktop) */
+.burger{
+  display:none;
+  width:44px;height:44px;
+  align-items:center;justify-content:center;
+  gap:6px;cursor:pointer;border-radius:8px;
+  transition:background-color .2s ease, transform .2s ease;
+  z-index:10002;
+}
+.burger:hover{ background-color:rgba(30,58,138,.08); }
+.burger span{
+  display:block;width:26px;height:2px;background:var(--main-color);
+  border-radius:999px;transition:transform .25s ease, opacity .2s ease;
+}
+
+/* Overlay (ajouté en HTML après le nav) */
+.backdrop{ display:none; }
+
+@media (max-width:900px){
+  /* Met le burger collé à droite */
+  header .container{ justify-content:flex-start; gap:12px; }
+  .burger{ display:flex; margin-left:auto; }
+
+  /* Panneau latéral droit */
+  header nav .menu{
+    position:fixed; top:0; right:0; height:100vh; width:min(320px,85vw);
+    background:#fff; display:flex; flex-direction:column; gap:8px;
+    padding:88px 20px 20px;
+    box-shadow:-16px 0 32px rgba(0,0,0,.12);
+    transform:translateX(100%); opacity:0; pointer-events:none;
+    transition:transform .3s cubic-bezier(.2,.7,.2,1), opacity .25s ease;
+    z-index:10001;
+  }
+  /* Liens confort tactile */
+  header nav .menu > li > a{ display:block; padding:12px 10px; border-radius:8px; }
+
+  /* Sous-menus en pile (pas de hover nécessaire) */
+  header .submenu{
+    position:static; min-width:unset; border:0; box-shadow:none;
+    padding:4px 0 0 12px; opacity:1; transform:none; visibility:visible; pointer-events:auto;
+  }
+  header .submenu li{ opacity:1; transform:none; }
+
+  /* Ouverture quand la case est cochée */
+  #nav-toggle:checked ~ nav .menu{
+    transform:translateX(0); opacity:1; pointer-events:auto;
+  }
+
+  /* Overlay cliquable pour fermer */
+  .backdrop{
+    display:block; position:fixed; inset:0;
+    background:rgba(0,0,0,.35);
+    opacity:0; pointer-events:none; transition:opacity .25s ease;
+    z-index:10000;
+  }
+  #nav-toggle:checked ~ .backdrop{
+    opacity:1; pointer-events:auto;
+  }
+
+  /* Burger → croix */
+  #nav-toggle:checked + label.burger span:nth-child(1){ transform:translateY(8px) rotate(45deg); }
+  #nav-toggle:checked + label.burger span:nth-child(2){ opacity:0; }
+  #nav-toggle:checked + label.burger span:nth-child(3){ transform:translateY(-8px) rotate(-45deg); }
+}
+
+/* Passer au-dessus du carrousel */
+header{ position:relative; z-index:10010; }
