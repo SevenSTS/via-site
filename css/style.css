@@ -1164,7 +1164,7 @@ button {
 #image_licence div{
     width: 400px;
     height: 450px;
-    background: url(img/imagelicence.webp);
+    background: url(../img/imagelicence.webp);
     background-size: cover;
     border-radius: 25px;
     margin-left: 25px;
