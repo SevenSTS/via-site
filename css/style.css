@@ -1227,6 +1227,11 @@ button {
     gap: 30px;
     margin-bottom: 40px;
 }
+@media (max-width: 840px) {
+    #parent_licence {
+        flex-direction: column;
+    }
+}
 /* ========== PAGE FORMATION MASTER ========== */
 #p_master{
     text-align: left;
@@ -1234,6 +1239,11 @@ button {
     line-height: 25px;
     margin-left: 50px;
     flex: 1;
+}
+@media (max-width: 840px) {
+    #p_master{
+        margin-top: 30px;
+    }
 }
 #image_master div{
     width: 400px;
