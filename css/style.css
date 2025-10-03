@@ -220,19 +220,19 @@ nav .menu > li > a:hover {
 }
 
 .photo1 {
-    background-image: url(../img/carroussel1.jpg);
+    background-image: url(../img/imagecarroussel1.jpg);
 }
 
 .photo2 {
-    background-image: url(../img/carroussel2.jpg);
+    background-image: url(../img/imagecarroussel2.jpg);
 }
 
 .photo3 {
-    background-image: url(../img/carroussel3.jpeg);
+    background-image: url(../img/imagecarroussel3.jpg);
 }
 
 .photo4 {
-    background-image: url(../img/carroussel4.jpeg);
+    background-image: url(../img/imagecarroussel4.jpg);
 }
 
 /* ========== SECTION TEXTE + VIDÉO ========== */
