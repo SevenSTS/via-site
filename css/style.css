@@ -871,7 +871,9 @@ button {
   margin: 30px auto;
   display: flex;
 }
-
+.map {
+    background-color: rgb(241, 241, 241);
+}
 /* ========== A PROPOS (CLASSES FUSIONNÉES) ========== */
 .page {
     width: 100%;
