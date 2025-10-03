@@ -1153,6 +1153,29 @@ button {
 .placement_button_BTS{
     margin-bottom: 40px;
 }
+/* ========== PAGE FORMATION LICENCE ========== */
+#p_licence{
+    text-align: left;
+    color: var(--main-color);
+    line-height: 25px;
+    margin-right: 50px;
+    flex: 1;
+}
+#image_licence div{
+    width: 400px;
+    height: 450px;
+    background: url(img/imagelicence.webp);
+    background-size: cover;
+    border-radius: 25px;
+    margin-left: 25px;
+    margin-top: 50px;
+}
+#parent_licence{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 40px;
+}
 /* ========== RESPONSIVE GÉNÉRAL ========== */
 @media (max-width: 1100px) {
     .partners-grid {
