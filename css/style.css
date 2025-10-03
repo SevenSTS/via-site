@@ -1176,6 +1176,24 @@ button {
     gap: 30px;
     margin-bottom: 40px;
 }
+/* ========== PAGE FORMATION MASTER ========== */
+#p_master{
+    text-align: left;
+    color: var(--main-color);
+    line-height: 25px;
+    margin-left: 50px;
+    flex: 1;
+}
+#image_master div{
+    width: 400px;
+    height: 450px;
+    background: url(../img/imagemaster.jpg);
+    background-size: cover;
+    border-radius: 25px;
+    margin-left: 70px;
+    margin-right: 50px;
+    margin-top: 50px;
+}
 /* ========== RESPONSIVE GÉNÉRAL ========== */
 @media (max-width: 1100px) {
     .partners-grid {
