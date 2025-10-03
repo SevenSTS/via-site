@@ -6,6 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formation Licence</title>
 </head>
+        <!-- =================== HEADER =================== -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="img/logo.png" alt="Logo IIA" />
+                <h1>IIA</h1>
+            </div>
+            <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true" />
+
+            <!-- Bouton burger -->
+            <label for="nav-toggle" class="burger" aria-label="Ouvrir le menu" role="button">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+            <nav aria-label="Menu principal">
+                <label for="nav-toggle" class="backdrop" aria-hidden="true"></label>
+                <ul class="menu">
+                    <li class="has-submenu">
+                        <a href="index.html">Accueil</a>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="apropos.html">À propos</a>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="formations.html">Formations</a>
+                        <ul class="submenu">
+                            <li><a href="#">BTS SIO</a></li>
+                            <li><a href="#">Licences</a></li>
+                            <li><a href="#">Masters</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
 <body>
     <h1 id="BTS_title">Formation: Licence</h1>
     <div id="parent_licence">
@@ -30,4 +68,5 @@
         </div>
     </div>
 </body>
+
 </html>
